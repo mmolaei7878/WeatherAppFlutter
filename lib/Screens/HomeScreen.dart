@@ -1,4 +1,3 @@
-import 'package:WeatherAppFlutter/Model/MainWeatherModel.dart';
 import 'package:flutter/material.dart';
 import '../Repository/Repository.dart';
 
@@ -12,7 +11,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     repo.getWeather();
   }
@@ -21,9 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Center(
-      child: Column(
-        children: [],
-      ),
+      child: Text('heloo gitHub'),
     ));
   }
 }
