@@ -23,11 +23,16 @@ class WeatherBloc {
     final response = await repository.getWeather();
     _weatherController.sink.add(response);
     final String weatherIcon = response.weather.icon;
-    switch (weatherIcon) {
-      case '01n':
-        _weatherIConController.sink.add('lib/asset/images/background.png');
-        break;
-      default:
+    if (weatherIcon.contains('01n') || weatherIcon.contains('01d')) {
+      _weatherIConController.sink.add('lib/asset/svg/cloudyDay.svg');
+    } else if (weatherIcon.contains('10n') || weatherIcon.contains('10d')) {
+      _weatherIConController.sink.add('lib/asset/svg/rainy.svg');
+    } else if (weatherIcon.contains('11n') || weatherIcon.contains('11d')) {
+      _weatherIConController.sink.add('lib/asset/svg/thunder.svg');
+    } else if (weatherIcon.contains('13n') || weatherIcon.contains('13n')) {
+      _weatherIConController.sink.add('lib/asset/svg/snowy.svg');
+    } else {
+      _weatherIConController.sink.add('lib/asset/svg/rainy.svg');
     }
   }
 }

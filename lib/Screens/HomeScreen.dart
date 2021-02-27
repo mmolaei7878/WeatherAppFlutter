@@ -2,6 +2,7 @@ import 'dart:ui' as ui;
 import 'package:WeatherAppFlutter/Model/MainWeatherModel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import '../BLoC/WeatherBloc.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -57,11 +58,16 @@ class _HomeScreenState extends State<HomeScreen> {
                         StreamBuilder(
                             stream: weatherController.weatherIConStream,
                             builder: (ctx, AsyncSnapshot<String> snapShot) {
-                              return Image.asset(
-                                snapShot.data,
-                                width: 260,
-                                height: 260,
-                              );
+                              if (snapShot.hasData) {
+                                return SvgPicture.asset(
+                                  snapShot.data,
+                                  width: 270,
+                                  height: 270,
+                                );
+                              } else {
+                                return Center(
+                                    child: CircularProgressIndicator());
+                              }
                             }),
                         Positioned(
                           bottom: 40,
@@ -74,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   Text(
-                    '13',
+                    snapShot.data.dt.toString(),
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 70,
@@ -173,7 +179,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         Text('30%',
                                             style: Theme.of(context)
                                                 .textTheme
-                                                .bodyText1)
+                                                .bodyText1),
                                       ],
                                     )
                                   ],
