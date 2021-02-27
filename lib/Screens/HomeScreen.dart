@@ -54,11 +54,15 @@ class _HomeScreenState extends State<HomeScreen> {
                           'lib/asset/images/mapblack.png',
                           color: Colors.white12,
                         ),
-                        Image.asset(
-                          'lib/asset/images/cloud.png',
-                          width: 260,
-                          height: 260,
-                        ),
+                        StreamBuilder(
+                            stream: weatherController.weatherIConStream,
+                            builder: (ctx, AsyncSnapshot<String> snapShot) {
+                              return Image.asset(
+                                snapShot.data,
+                                width: 260,
+                                height: 260,
+                              );
+                            }),
                         Positioned(
                           bottom: 40,
                           child: Text(
@@ -131,7 +135,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                         Text('30%',
                                             style: Theme.of(context)
                                                 .textTheme
-                                                .bodyText1)
+                                                .bodyText1),
+                                        Image.network(
+                                          "http://openweathermap.org/img/w/" +
+                                              snapShot.data.weather.icon +
+                                              ".png",
+                                          width: 120,
+                                          height: 120,
+                                        )
                                       ],
                                     ),
                                     Container(
