@@ -21,14 +21,16 @@ class WeatherBloc {
   String currentTime;
 
   double _lat;
+
   double _lon;
+
+  bool _serviceEnabled;
 
   close() {
     _weatherController.close();
     _weatherIConController.close();
   }
 
-  bool _serviceEnabled;
   getLocation() async {
     Location location = Location();
 

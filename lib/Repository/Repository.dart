@@ -7,7 +7,7 @@ class Repository {
   final apiKey = 'a075d4bcdb77876bbece4ed8e67f85e8';
   MainWeatherModel mainWeatherModel;
   Future<MainWeatherModel> getWeather(
-      {double lat = 35.8400, double lon = 50.9391}) async {
+      {double lat = 35.6892, double lon = 51.3890}) async {
     final url =
         'https://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=$apiKey';
 
