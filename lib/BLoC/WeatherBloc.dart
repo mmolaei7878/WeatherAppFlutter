@@ -24,15 +24,17 @@ class WeatherBloc {
     _weatherController.sink.add(response);
     final String weatherIcon = response.weather.icon;
     if (weatherIcon.contains('01n') || weatherIcon.contains('01d')) {
-      _weatherIConController.sink.add('lib/asset/svg/cloudyDay.svg');
+      _weatherIConController.sink.add('lib/asset/images/sun.png');
     } else if (weatherIcon.contains('10n') || weatherIcon.contains('10d')) {
-      _weatherIConController.sink.add('lib/asset/svg/rainy.svg');
-    } else if (weatherIcon.contains('11n') || weatherIcon.contains('11d')) {
-      _weatherIConController.sink.add('lib/asset/svg/thunder.svg');
+      _weatherIConController.sink.add('lib/asset/images/rain.png');
+    } else if (weatherIcon.contains('02n') || weatherIcon.contains('02n')) {
+      _weatherIConController.sink.add('lib/asset/images/cloud.png');
     } else if (weatherIcon.contains('13n') || weatherIcon.contains('13n')) {
-      _weatherIConController.sink.add('lib/asset/svg/snowy.svg');
+      _weatherIConController.sink.add('lib/asset/images/snow.png');
+    } else if (weatherIcon.contains('11n') || weatherIcon.contains('11n')) {
+      _weatherIConController.sink.add('lib/asset/images/thunder.png');
     } else {
-      _weatherIConController.sink.add('lib/asset/svg/rainy.svg');
+      _weatherIConController.sink.add('lib/asset/images/sun.png');
     }
   }
 }

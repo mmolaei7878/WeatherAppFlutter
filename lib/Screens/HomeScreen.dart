@@ -2,7 +2,6 @@ import 'dart:ui' as ui;
 import 'package:WeatherAppFlutter/Model/MainWeatherModel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import '../BLoC/WeatherBloc.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -59,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             stream: weatherController.weatherIConStream,
                             builder: (ctx, AsyncSnapshot<String> snapShot) {
                               if (snapShot.hasData) {
-                                return SvgPicture.asset(
+                                return Image.asset(
                                   snapShot.data,
                                   width: 270,
                                   height: 270,
