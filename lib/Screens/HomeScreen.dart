@@ -41,7 +41,27 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [],
+                      children: [
+                        Container(
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.location_on,
+                                color: Colors.white,
+                              ),
+                              Text(
+                                snapShot.data.name.toString(),
+                                style: Theme.of(context).textTheme.bodyText1,
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          child: Text(
+                            weatherController.currentTime.toString(),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   Container(
@@ -133,7 +153,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                         Text('Wind',
                                             style: Theme.of(context)
                                                 .textTheme
-                                                .bodyText1),
+                                                .bodyText2),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
                                         Text(
                                             snapShot.data.wind.speed
                                                     .toString() +
@@ -147,7 +170,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                         Text('Humidity',
                                             style: Theme.of(context)
                                                 .textTheme
-                                                .bodyText1),
+                                                .bodyText2),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
                                         Text(
                                             snapShot.data.main.humidity
                                                 .toString(),
@@ -169,7 +195,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                         Text('Presure',
                                             style: Theme.of(context)
                                                 .textTheme
-                                                .bodyText1),
+                                                .bodyText2),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
                                         Text(
                                             snapShot.data.main.pressure
                                                     .toString() +
@@ -183,7 +212,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                         Text('Feels Like',
                                             style: Theme.of(context)
                                                 .textTheme
-                                                .bodyText1),
+                                                .bodyText2),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
                                         Text(
                                             snapShot.data.main.feels_like
                                                     .toString()[0] +
