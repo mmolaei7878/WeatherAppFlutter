@@ -9,11 +9,16 @@ class HomeScreen extends StatefulWidget {
   _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<HomeScreen>
+    with SingleTickerProviderStateMixin {
+  AnimationController animationController;
   @override
   void initState() {
     super.initState();
     weatherController.getWeather();
+    animationController =
+        AnimationController(duration: Duration(seconds: 30), vsync: this)
+          ..repeat();
   }
 
   @override
@@ -78,10 +83,14 @@ class _HomeScreenState extends State<HomeScreen> {
                           stream: weatherController.weatherIConStream,
                           builder: (ctx, AsyncSnapshot<String> snapShot) {
                             if (snapShot.hasData) {
-                              return Image.asset(
-                                snapShot.data,
-                                width: 200,
-                                height: 200,
+                              return RotationTransition(
+                                turns: animationController,
+                                alignment: Alignment.center,
+                                child: Image.asset(
+                                  snapShot.data,
+                                  width: 200,
+                                  height: 200,
+                                ),
                               );
                             } else {
                               return Center(child: CircularProgressIndicator());
