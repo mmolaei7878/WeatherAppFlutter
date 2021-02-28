@@ -4,7 +4,7 @@ import '../Model/MainWeatherModel.dart';
 import 'package:http/http.dart' as http;
 
 class Repository {
-  final apiKey = 'a075d4bcdb77876bbece4ed8e67f85e8';
+  final apiKey = '<<YOUR API KEY>>';
   MainWeatherModel mainWeatherModel;
   Future<MainWeatherModel> getWeather(
       {double lat = 35.6892, double lon = 51.3890}) async {
