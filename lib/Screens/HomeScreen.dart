@@ -60,8 +60,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               if (snapShot.hasData) {
                                 return Image.asset(
                                   snapShot.data,
-                                  width: 270,
-                                  height: 270,
+                                  width: 200,
+                                  height: 200,
                                 );
                               } else {
                                 return Center(
@@ -79,7 +79,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   Text(
-                    snapShot.data.dt.toString(),
+                    ((snapShot.data.main.temp).toStringAsFixed(0))
+                            .replaceRange(2, 3, '') +
+                        '°',
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 70,
