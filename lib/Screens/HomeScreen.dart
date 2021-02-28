@@ -55,37 +55,43 @@ class _HomeScreenState extends State<HomeScreen> {
                           color: Colors.white12,
                         ),
                         StreamBuilder(
-                            stream: weatherController.weatherIConStream,
-                            builder: (ctx, AsyncSnapshot<String> snapShot) {
-                              if (snapShot.hasData) {
-                                return Image.asset(
-                                  snapShot.data,
-                                  width: 200,
-                                  height: 200,
-                                );
-                              } else {
-                                return Center(
-                                    child: CircularProgressIndicator());
-                              }
-                            }),
+                          stream: weatherController.weatherIConStream,
+                          builder: (ctx, AsyncSnapshot<String> snapShot) {
+                            if (snapShot.hasData) {
+                              return Image.asset(
+                                snapShot.data,
+                                width: 200,
+                                height: 200,
+                              );
+                            } else {
+                              return Center(child: CircularProgressIndicator());
+                            }
+                          },
+                        ),
                         Positioned(
-                          bottom: 40,
+                          bottom: 20,
                           child: Text(
                             snapShot.data.weather.description.toUpperCase(),
                             style: TextStyle(color: Colors.white, fontSize: 24),
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
-                  Text(
-                    ((snapShot.data.main.temp).toStringAsFixed(0))
-                            .replaceRange(2, 3, '') +
-                        '°',
-                    style: TextStyle(
+                  Container(
+                    width: mqw,
+                    alignment: Alignment.center,
+                    margin: EdgeInsets.only(left: 25),
+                    child: Text(
+                      snapShot.data.main.temp.toString()[0] +
+                          snapShot.data.main.temp.toString()[1] +
+                          '°',
+                      style: TextStyle(
                         color: Colors.white,
                         fontSize: 70,
-                        fontWeight: FontWeight.bold),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
                   Container(
                     width: mqw,
@@ -124,11 +130,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: [
-                                        Text('Percipation',
+                                        Text('Wind',
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyText1),
-                                        Text('30%',
+                                        Text(
+                                            snapShot.data.wind.speed
+                                                    .toString() +
+                                                ' km/h',
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyText1),
@@ -139,17 +148,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyText1),
-                                        Text('30%',
+                                        Text(
+                                            snapShot.data.main.humidity
+                                                .toString(),
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyText1),
-                                        Image.network(
-                                          "http://openweathermap.org/img/w/" +
-                                              snapShot.data.weather.icon +
-                                              ".png",
-                                          width: 120,
-                                          height: 120,
-                                        )
                                       ],
                                     ),
                                     Container(
@@ -162,22 +166,30 @@ class _HomeScreenState extends State<HomeScreen> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: [
-                                        Text('Percipation',
+                                        Text('Presure',
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyText1),
-                                        Text('30%',
+                                        Text(
+                                            snapShot.data.main.pressure
+                                                    .toString() +
+                                                ' hpa',
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyText1),
                                         SizedBox(
                                           height: 40,
                                         ),
-                                        Text('Humidity',
+                                        Text('Feels Like',
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyText1),
-                                        Text('30%',
+                                        Text(
+                                            snapShot.data.main.feels_like
+                                                    .toString()[0] +
+                                                snapShot.data.main.feels_like
+                                                    .toString()[1] +
+                                                '°',
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyText1),
